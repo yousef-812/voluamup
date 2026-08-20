@@ -46,6 +46,9 @@
     <string name="type_incoming">Incoming</string>
     <string name="type_outgoing">Outgoing</string>
     <string name="type_missed">Missed</string>
+    <string name="type_rejected">Rejected</string>
+    <string name="type_blocked">Blocked</string>
+    <string name="type_answered_externally">Answered Externally</string>
     <string name="call_log_item_format">%1$s • %2$s • %3$s</string>
 
     <!-- In-Call Screen -->
