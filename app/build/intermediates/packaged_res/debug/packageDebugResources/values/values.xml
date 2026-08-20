@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#FF9800</color>
+    <color name="background_dark">#121212</color>
+    <color name="boost_gold">#FFD700</color>
+    <color name="call_green">#4CAF50</color>
+    <color name="call_red">#E53935</color>
+    <color name="card_background">#2C2C2C</color>
+    <color name="primary">#1E88E5</color>
+    <color name="primary_dark">#1565C0</color>
+    <color name="surface_dark">#1E1E1E</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <string name="answer_call">رد</string>
+    <string name="app_name">صوت 200% - الهاتف</string>
+    <string name="boost_level">مستوى التكبير: %1$d%%</string>
+    <string name="boost_notice">تم تفعيل التكبير الرقمي لصوت المكالمة حتى 200%</string>
+    <string name="btn_set_default">تعيين كافتراضي</string>
+    <string name="call">اتصال</string>
+    <string name="decline_call">رفض</string>
+    <string name="earpiece_booster_title">مضخم صوت سماعة الأذن (Earpiece Boost)</string>
+    <string name="email_label">البريد:</string>
+    <string name="end_call">إنهاء المكالمة</string>
+    <string name="enter_phone_number">أدخل رقم الهاتف...</string>
+    <string name="hold">تعليق المكالمة</string>
+    <string name="in_call_title">مكالمة جارية</string>
+    <string name="keypad">لوحة الأرقام</string>
+    <string name="mute">كتم الصوت</string>
+    <string name="no_call_log">لا يوجد مكالمات سابقة</string>
+    <string name="no_contacts">لا يوجد جهات اتصال</string>
+    <string name="phone_label">الهاتف:</string>
+    <string name="route_earpiece">سماعة الأذن</string>
+    <string name="route_speaker">مكبر الصوت (Speaker)</string>
+    <string name="search_contacts">بحث في جهات الاتصال والإيميلات...</string>
+    <string name="set_default_dialer_msg">لتمكين مضخم الصوت 200% أثناء المكالمة، يرجى تعيين التطبيق كـ تطبيق الاتصال الافتراضي.</string>
+    <string name="status_connecting">جارٍ التوصيل...</string>
+    <string name="status_dialing">جارٍ الاتصال...</string>
+    <string name="status_incoming">مكالمة واردة...</string>
+    <string name="status_on_hold">قيد الانتظار</string>
+    <string name="title_call_log">السجل</string>
+    <string name="title_contacts">جهات الاتصال</string>
+    <string name="title_dialer">اتصال</string>
+    <string name="type_incoming">واردة</string>
+    <string name="type_missed">مفقودة</string>
+    <string name="type_outgoing">صادرة</string>
+    <string name="unhold">استئناف المكالمة</string>
+    <string name="unmute">إلغاء الكتم</string>
+    <style name="Theme.VolumeUpDialer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="android:statusBarColor">@color/background_dark</item>
+        <item name="android:windowBackground">@color/background_dark</item>
+    </style>
+</resources>
