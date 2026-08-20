@@ -333,15 +333,18 @@ class InCallActivity : AppCompatActivity() {
         releaseProximityWakeLock()
         audioBoosterManager.release()
 
-        val causeCode = CallManager.disconnectCause.value
+        // DisconnectCause is NOT an enum — its fields are Int constants
+        val causeCode: Int? = CallManager.disconnectCause.value
         val (statusRes, toastRes) = when (causeCode) {
-            DisconnectCause.BUSY      -> R.string.call_status_busy      to R.string.call_status_busy
-            DisconnectCause.NO_ANSWER -> R.string.call_status_no_answer to R.string.call_status_no_answer
-            DisconnectCause.REJECTED  -> R.string.call_status_rejected  to R.string.call_status_rejected
-            DisconnectCause.MISSED    -> R.string.call_status_missed    to null
-            DisconnectCause.ERROR     -> R.string.call_status_failed    to null
-            DisconnectCause.CANCELED  -> R.string.call_status_canceled  to null
-            else                      -> R.string.call_status_ended     to null
+            DisconnectCause.BUSY     -> R.string.call_status_busy     to R.string.call_status_busy
+            DisconnectCause.REJECTED -> R.string.call_status_rejected to R.string.call_status_rejected
+            DisconnectCause.MISSED   -> R.string.call_status_missed   to null
+            DisconnectCause.ERROR    -> R.string.call_status_failed   to null
+            DisconnectCause.CANCELED -> R.string.call_status_canceled to null
+            DisconnectCause.REMOTE   -> R.string.call_status_ended    to null
+            DisconnectCause.LOCAL    -> R.string.call_status_ended    to null
+            // NO_ANSWER-like condition: remote hung up without answering (maps to REMOTE or MISSED)
+            else                     -> R.string.call_status_ended    to null
         }
 
         binding.tvInCallStatus.text = getString(statusRes)
