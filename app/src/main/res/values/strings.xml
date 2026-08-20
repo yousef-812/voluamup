@@ -12,6 +12,12 @@
     <string name="btn_set_default">Set Default</string>
     <string name="cd_backspace">Delete digit</string>
 
+    <!-- SIM Selection -->
+    <string name="select_sim">SIM Card</string>
+    <string name="sim_1">SIM 1</string>
+    <string name="sim_2">SIM 2</string>
+    <string name="sim_default">Default SIM</string>
+
     <!-- Dialogs & Buttons -->
     <string name="dialog_default_dialer_title">Set Default Dialer</string>
     <string name="dialog_default_dialer_msg">VoluamUp needs to be set as default dialer to boost earpiece call volume up to 200%.</string>
@@ -53,4 +59,9 @@
     <string name="unmute">Unmute</string>
     <string name="end_call">End Call</string>
     <string name="boost_notice">Digital gain boost up to 200% active</string>
+    <string name="btn_keypad">Keypad</string>
+    <string name="btn_add_call">Add Call</string>
+    <string name="toggle_boost">200% Boost</string>
+    <string name="boost_enabled">200% Boost ON</string>
+    <string name="boost_disabled">Boost OFF</string>
 </resources>

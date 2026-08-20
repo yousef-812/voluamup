@@ -50,6 +50,18 @@ object CallManager {
         _currentCall.value?.disconnect()
     }
 
+    fun holdCall() {
+        _currentCall.value?.hold()
+    }
+
+    fun playDtmf(digit: Char) {
+        _currentCall.value?.playDtmfTone(digit)
+    }
+
+    fun stopDtmf() {
+        _currentCall.value?.stopDtmfTone()
+    }
+
     fun toggleMute(service: CustomInCallService) {
         val newMuteState = !_isMuted.value
         service.setMuted(newMuteState)

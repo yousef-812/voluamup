@@ -1,156 +1,357 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_dark"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:fillViewport="true">
 
-    <!-- Top Contact Info -->
-    <ImageView
-        android:id="@+id/ivInCallAvatar"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="32dp"
-        android:src="@android:drawable/ic_menu_myplaces"
-        app:tint="@color/primary" />
-
-    <TextView
-        android:id="@+id/tvInCallName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/text_primary"
-        android:textSize="26sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvInCallStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/text_secondary"
-        android:textSize="16sp" />
-
-    <!-- 200% Earpiece Volume Booster Section Card -->
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/surface_dark"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        app:strokeColor="@color/boost_gold"
-        app:strokeWidth="1dp">
+        android:background="@color/background_dark"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-        <LinearLayout
+        <!-- Top Contact Info -->
+        <ImageView
+            android:id="@+id/ivInCallAvatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:src="@android:drawable/ic_menu_myplaces"
+            app:tint="@color/primary" />
+
+        <TextView
+            android:id="@+id/tvInCallName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvInCallStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp" />
+
+        <!-- 200% Earpiece Volume Booster Section Card -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/surface_dark"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/boost_gold"
+            app:strokeWidth="1dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tvBoosterTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="@string/earpiece_booster_title"
-                    android:textColor="@color/boost_gold"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvBoosterTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/earpiece_booster_title"
+                        android:textColor="@color/boost_gold"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchBoostEnable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:checked="true"
+                        android:text="@string/toggle_boost"
+                        android:textColor="@color/boost_gold"
+                        android:textSize="12sp"
+                        app:useMaterialThemeColors="true" />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/tvBoostPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4dp"
                     android:text="200%"
                     android:textColor="@color/boost_gold"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
-            </RelativeLayout>
 
-            <!-- Slider to adjust boost level from 100% to 200% -->
-            <com.google.android.material.slider.Slider
-                android:id="@+id/sliderVolumeBoost"
+                <!-- Slider to adjust boost level from 100% to 200% -->
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderVolumeBoost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:stepSize="5"
+                    android:value="200"
+                    android:valueFrom="100"
+                    android:valueTo="200"
+                    app:haloColor="@color/boost_gold"
+                    app:thumbColor="@color/boost_gold"
+                    app:trackColorActive="@color/boost_gold"
+                    app:trackColorInactive="@color/card_background" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/boost_notice"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- DTMF Touch-Tone Keypad (Collapsible) -->
+        <LinearLayout
+            android:id="@+id/layoutDtmfKeypad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:stepSize="5"
-                android:value="200"
-                android:valueFrom="100"
-                android:valueTo="200"
-                app:haloColor="@color/boost_gold"
-                app:thumbColor="@color/boost_gold"
-                app:trackColorActive="@color/boost_gold"
-                app:trackColorInactive="@color/card_background" />
+                android:layoutDirection="ltr"
+                android:columnCount="3"
+                android:rowCount="4">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="4dp"
-                android:text="@string/boost_notice"
-                android:textColor="@color/text_secondary"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/btnDtmf1"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="1"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
 
+                <Button
+                    android:id="@+id/btnDtmf2"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="2"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmf3"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="3"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmf4"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="4"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmf5"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="5"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmf6"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="6"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmf7"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="7"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmf8"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="8"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmf9"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="9"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmfStar"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="*"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmf0"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="0"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnDtmfHash"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:text="#"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+            </GridLayout>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-    <!-- Spacer -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        <!-- Spacer -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-    <!-- Audio Controls (Route & Mute) -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        <!-- Control Grid (Keypad, Add Call, Speaker, Mute) -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:columnCount="2"
+            android:rowCount="2">
 
-        <!-- Route Earpiece / Speaker -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnToggleSpeaker"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            <!-- Toggle DTMF Keypad Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToggleKeypad"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="@string/btn_keypad"
+                android:textColor="@color/text_primary"
+                app:icon="@android:drawable/ic_dialog_dialer"
+                app:iconTint="@color/primary" />
+
+            <!-- Add Call Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddCall"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="@string/btn_add_call"
+                android:textColor="@color/text_primary"
+                app:icon="@android:drawable/ic_menu_add"
+                app:iconTint="@color/primary" />
+
+            <!-- Route Earpiece / Speaker -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToggleSpeaker"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="@string/route_speaker"
+                android:textColor="@color/text_primary"
+                app:icon="@android:drawable/stat_sys_speakerphone"
+                app:iconTint="@color/primary" />
+
+            <!-- Mute / Unmute -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToggleMute"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="@string/mute"
+                android:textColor="@color/text_primary"
+                app:icon="@android:drawable/ic_btn_speak_now"
+                app:iconTint="@color/text_primary" />
+
+        </GridLayout>
+
+        <!-- End Call Button -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnEndCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@string/route_speaker"
-            android:textColor="@color/text_primary"
-            app:icon="@android:drawable/stat_sys_speakerphone"
-            app:iconTint="@color/primary" />
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/end_call"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:tint="@color/text_primary"
+            app:backgroundTint="@color/call_red"
+            app:fabSize="normal" />
 
-        <!-- Mute / Unmute -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnToggleMute"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mute"
-            android:textColor="@color/text_primary"
-            app:icon="@android:drawable/ic_btn_speak_now"
-            app:iconTint="@color/text_primary" />
     </LinearLayout>
-
-    <!-- End Call Button -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnEndCall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/end_call"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"
-        android:tint="@color/text_primary"
-        app:backgroundTint="@color/call_red"
-        app:fabSize="normal" />
-
-</LinearLayout>
+</ScrollView>
