@@ -38,8 +38,6 @@ class CallLogAdapter(
 
         fun bind(item: CallLogItem) {
             val context = binding.root.context
-            binding.tvLogNameOrNumber.text = item.name ?: item.number
-
             val formattedDate = DateFormat.format("dd/MM/yyyy HH:mm", Date(item.date))
             val typeStr = when (item.type) {
                 CallLog.Calls.INCOMING_TYPE -> context.getString(R.string.type_incoming)
@@ -48,7 +46,13 @@ class CallLogAdapter(
                 else -> ""
             }
 
-            binding.tvLogDateAndType.text = "$typeStr • $formattedDate"
+            if (!item.name.isNullOrEmpty()) {
+                binding.tvLogNameOrNumber.text = item.name
+                binding.tvLogDateAndType.text = "${item.number} • $typeStr • $formattedDate"
+            } else {
+                binding.tvLogNameOrNumber.text = item.number
+                binding.tvLogDateAndType.text = "$typeStr • $formattedDate"
+            }
 
             val iconRes = when (item.type) {
                 CallLog.Calls.INCOMING_TYPE -> android.R.drawable.sym_call_incoming

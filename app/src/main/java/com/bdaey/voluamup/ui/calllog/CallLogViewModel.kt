@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.bdaey.voluamup.R
 import com.bdaey.voluamup.model.CallLogItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,25 +58,27 @@ class CallLogViewModel(application: Application) : AndroidViewModel(application)
             val durationIdx = c.getColumnIndex(CallLog.Calls.DURATION)
 
             while (c.moveToNext()) {
-                val id = if (idIdx >= 0) c.getString(idIdx) else ""
-                val number = if (numberIdx >= 0) c.getString(numberIdx) ?: "" else ""
+                val id = if (idIdx >= 0) c.getString(idIdx) ?: "" else ""
+                var number = if (numberIdx >= 0) c.getString(numberIdx) ?: "" else ""
                 val name = if (nameIdx >= 0) c.getString(nameIdx) else null
                 val type = if (typeIdx >= 0) c.getInt(typeIdx) else CallLog.Calls.INCOMING_TYPE
                 val date = if (dateIdx >= 0) c.getLong(dateIdx) else 0L
                 val duration = if (durationIdx >= 0) c.getLong(durationIdx) else 0L
 
-                if (number.isNotEmpty()) {
-                    logs.add(
-                        CallLogItem(
-                            id = id,
-                            number = number,
-                            name = name,
-                            type = type,
-                            date = date,
-                            duration = duration
-                        )
-                    )
+                if (number.isBlank()) {
+                    number = getApplication<Application>().getString(R.string.unknown_caller)
                 }
+
+                logs.add(
+                    CallLogItem(
+                        id = id,
+                        number = number,
+                        name = name,
+                        type = type,
+                        date = date,
+                        duration = duration
+                    )
+                )
             }
         }
         return logs
