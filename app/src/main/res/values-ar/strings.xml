@@ -12,7 +12,7 @@
     <string name="btn_set_default">تعيين كافتراضي</string>
     <string name="cd_backspace">حذف رقم</string>
 
-    <!-- SIM Selection -->
+    <!-- SIM Selection (labels are built dynamically in code; these are unused fallbacks) -->
     <string name="select_sim">الشريحة</string>
     <string name="sim_1">شريحة 1</string>
     <string name="sim_2">شريحة 2</string>
@@ -22,7 +22,7 @@
     <string name="dialog_default_dialer_title">تعيين تطبيق الاتصال الافتراضي</string>
     <string name="dialog_default_dialer_msg">يحتاج VoluamUp إلى تعيينه كتطبيق الاتصال الافتراضي لتضخيم صوت المكالمة حتى 200%.</string>
     <string name="btn_continue">متابعة</string>
-    <string name="btn_allow">رد (قبول)</string>
+    <string name="btn_allow">رد</string>
     <string name="btn_cancel">رفض</string>
     <string name="btn_open_settings">فتح الإعدادات</string>
 
@@ -62,4 +62,28 @@
     <string name="btn_keypad">لوحة الأرقام</string>
     <string name="btn_add_call">إضافة مكالمة</string>
     <string name="unknown_caller">رقم غير معروف</string>
+
+    <!-- Call States -->
+    <string name="call_status_dialing">جارٍ الاتصال…</string>
+    <string name="call_status_connecting">جارٍ الاتصال…</string>
+    <string name="call_status_ringing">مكالمة واردة…</string>
+    <string name="call_status_active">مكالمة جارية</string>
+    <string name="call_status_holding">قيد الانتظار</string>
+    <string name="call_status_busy">الخط مشغول</string>
+    <string name="call_status_no_answer">لم يتم الرد</string>
+    <string name="call_status_rejected">تم رفض المكالمة</string>
+    <string name="call_status_missed">مكالمة فائتة</string>
+    <string name="call_status_failed">فشل الاتصال</string>
+    <string name="call_status_canceled">تم إلغاء المكالمة</string>
+    <string name="call_status_ended">انتهت المكالمة</string>
+
+    <!-- Notification Strings -->
+    <string name="notification_channel_name">المكالمات الهاتفية</string>
+    <string name="notification_channel_desc">إشعارات المكالمات الواردة والجارية</string>
+    <string name="notification_incoming_call">مكالمة واردة</string>
+    <string name="notification_ongoing_call">مكالمة جارية</string>
+    <string name="notification_action_answer">رد</string>
+    <string name="notification_action_decline">رفض</string>
+    <string name="notification_action_end">إنهاء</string>
 </resources>
+

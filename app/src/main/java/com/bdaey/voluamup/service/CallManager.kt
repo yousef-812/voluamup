@@ -2,6 +2,7 @@ package com.bdaey.voluamup.service
 
 import android.telecom.Call
 import android.telecom.CallAudioState
+import android.telecom.DisconnectCause
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,15 +21,24 @@ object CallManager {
     private val _isSpeakerphoneOn = MutableStateFlow(false)
     val isSpeakerphoneOn: StateFlow<Boolean> = _isSpeakerphoneOn.asStateFlow()
 
+    /** Holds the DisconnectCause code when a call ends (BUSY, NO_ANSWER, REJECTED, etc.) */
+    private val _disconnectCause = MutableStateFlow<Int?>(null)
+    val disconnectCause: StateFlow<Int?> = _disconnectCause.asStateFlow()
+
     private val callCallback = object : Call.Callback() {
         override fun onStateChanged(call: Call?, state: Int) {
             _callState.value = state
+            if (state == Call.STATE_DISCONNECTED) {
+                // Capture reason: BUSY, NO_ANSWER, REJECTED, REMOTE, LOCAL, etc.
+                _disconnectCause.value = call?.details?.disconnectCause?.code
+            }
         }
     }
 
     fun setCall(call: Call?) {
         _currentCall.value?.unregisterCallback(callCallback)
         _currentCall.value = call
+        _disconnectCause.value = null
         if (call != null) {
             call.registerCallback(callCallback)
             _callState.value = call.state
@@ -52,6 +62,10 @@ object CallManager {
 
     fun holdCall() {
         _currentCall.value?.hold()
+    }
+
+    fun unholdCall() {
+        _currentCall.value?.unhold()
     }
 
     fun playDtmf(digit: Char) {
@@ -78,3 +92,4 @@ object CallManager {
         _isSpeakerphoneOn.value = (newRoute == CallAudioState.ROUTE_SPEAKER)
     }
 }
+

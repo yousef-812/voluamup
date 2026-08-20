@@ -12,7 +12,7 @@
     <string name="btn_set_default">Set Default</string>
     <string name="cd_backspace">Delete digit</string>
 
-    <!-- SIM Selection -->
+    <!-- SIM Selection (labels are built dynamically in code; these are unused fallbacks) -->
     <string name="select_sim">SIM Card</string>
     <string name="sim_1">SIM 1</string>
     <string name="sim_2">SIM 2</string>
@@ -62,4 +62,28 @@
     <string name="btn_keypad">Keypad</string>
     <string name="btn_add_call">Add Call</string>
     <string name="unknown_caller">Unknown Number</string>
+
+    <!-- Call States -->
+    <string name="call_status_dialing">Dialing…</string>
+    <string name="call_status_connecting">Connecting…</string>
+    <string name="call_status_ringing">Incoming Call…</string>
+    <string name="call_status_active">Active Call</string>
+    <string name="call_status_holding">On Hold</string>
+    <string name="call_status_busy">Line Busy</string>
+    <string name="call_status_no_answer">No Answer</string>
+    <string name="call_status_rejected">Call Declined</string>
+    <string name="call_status_missed">Missed Call</string>
+    <string name="call_status_failed">Call Failed</string>
+    <string name="call_status_canceled">Call Canceled</string>
+    <string name="call_status_ended">Call Ended</string>
+
+    <!-- Notification Strings -->
+    <string name="notification_channel_name">Phone Calls</string>
+    <string name="notification_channel_desc">Incoming and active call notifications</string>
+    <string name="notification_incoming_call">Incoming Call</string>
+    <string name="notification_ongoing_call">Ongoing Call</string>
+    <string name="notification_action_answer">Answer</string>
+    <string name="notification_action_decline">Decline</string>
+    <string name="notification_action_end">End Call</string>
 </resources>
+

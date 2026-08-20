@@ -1,12 +1,14 @@
 package com.bdaey.voluamup.ui.dialer
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.telecom.PhoneAccountHandle
 import android.telecom.TelecomManager
+import android.telephony.SubscriptionManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -37,15 +39,84 @@ class DialerFragment : Fragment() {
         loadSimAccounts()
     }
 
+    /**
+     * Reads actual SIM subscriptions from SubscriptionManager.
+     * - Shows each Chip only if that SIM slot is actually occupied.
+     * - Displays the real phone number next to the SIM label (if available).
+     * - Hides the entire ChipGroup when the device has ≤1 SIM.
+     */
+    @SuppressLint("MissingPermission")
     private fun loadSimAccounts() {
+        val context = requireContext()
+
+        // Load TelecomManager phone account handles (used when placing calls)
         try {
-            val telecomManager = requireContext().getSystemService(Context.TELECOM_SERVICE) as? TelecomManager
-            if (telecomManager != null && PermissionHelper.hasPermission(requireContext(), Manifest.permission.READ_PHONE_STATE)) {
+            val telecomManager = context.getSystemService(Context.TELECOM_SERVICE) as? TelecomManager
+            if (telecomManager != null &&
+                PermissionHelper.hasPermission(context, Manifest.permission.READ_PHONE_STATE)
+            ) {
                 phoneAccountHandles = telecomManager.callCapablePhoneAccounts
             }
         } catch (e: Exception) {
-            Log.w("DialerFragment", "Could not query call-capable phone accounts: ${e.message}")
+            Log.w("DialerFragment", "Could not query phone accounts: ${e.message}")
         }
+
+        // Read SIM subscription info to get real labels & numbers
+        val subscriptions = try {
+            if (PermissionHelper.hasPermission(context, Manifest.permission.READ_PHONE_STATE)) {
+                val subManager = context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE)
+                        as? SubscriptionManager
+                subManager?.activeSubscriptionInfoList ?: emptyList()
+            } else emptyList()
+        } catch (e: Exception) {
+            Log.w("DialerFragment", "Could not read subscription info: ${e.message}")
+            emptyList()
+        }
+
+        val simCount = subscriptions.size
+
+        when {
+            simCount <= 1 -> {
+                // Single-SIM or no SIM — hide the entire selector
+                binding.cgSimSelector.visibility = View.GONE
+            }
+            simCount == 2 -> {
+                // Dual-SIM: show both chips with real number
+                binding.cgSimSelector.visibility = View.VISIBLE
+                binding.chipSim1.visibility = View.VISIBLE
+                binding.chipSim2.visibility = View.VISIBLE
+
+                val sub1 = subscriptions[0]
+                val sub2 = subscriptions[1]
+
+                // Build label: "شريحة 1 • 01XXXXXXXXX" — fallback to slot index if no number
+                val label1 = buildSimLabel(1, sub1.number)
+                val label2 = buildSimLabel(2, sub2.number)
+
+                binding.chipSim1.text = label1
+                binding.chipSim2.text = label2
+                binding.chipSim1.isChecked = true
+            }
+            else -> {
+                // More than 2 SIMs (rare) — show first two only
+                binding.cgSimSelector.visibility = View.VISIBLE
+                binding.chipSim1.visibility = View.VISIBLE
+                binding.chipSim2.visibility = View.VISIBLE
+
+                val label1 = buildSimLabel(1, subscriptions[0].number)
+                val label2 = buildSimLabel(2, subscriptions[1].number)
+
+                binding.chipSim1.text = label1
+                binding.chipSim2.text = label2
+                binding.chipSim1.isChecked = true
+            }
+        }
+    }
+
+    /** Builds a chip label like "شريحة 1 • 0100xxxxxxx" or just "شريحة 1" if no number. */
+    private fun buildSimLabel(slotIndex: Int, phoneNumber: String?): String {
+        val base = "شريحة $slotIndex"
+        return if (!phoneNumber.isNullOrBlank()) "$base  •  $phoneNumber" else base
     }
 
     private fun setupKeypad() {
@@ -130,3 +201,4 @@ class DialerFragment : Fragment() {
         _binding = null
     }
 }
+

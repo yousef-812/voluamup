@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- Permissions for Contacts & Call Logs -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -14,6 +15,9 @@
 
     <!-- Android 13 (API 33+) Notification Permission -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Full Screen Intent for incoming call on lockscreen (required Android 14+) -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <!-- Foreground service permissions -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -56,10 +60,10 @@
             </intent-filter>
         </activity>
 
-        <!-- In-Call Screen Activity -->
+        <!-- In-Call Screen Activity: exported=true needed for fullScreenIntent from notification -->
         <activity
             android:name=".ui.incall.InCallActivity"
-            android:exported="false"
+            android:exported="true"
             android:launchMode="singleInstance"
             android:showOnLockScreen="true"
             android:turnScreenOn="true"
@@ -78,6 +82,16 @@
                 <action android:name="android.telecom.InCallService" />
             </intent-filter>
         </service>
+
+        <!-- BroadcastReceiver for incoming call Answer/Decline from notification -->
+        <receiver
+            android:name=".service.CallActionReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.bdaey.voluamup.ACTION_ANSWER_CALL" />
+                <action android:name="com.bdaey.voluamup.ACTION_DECLINE_CALL" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
