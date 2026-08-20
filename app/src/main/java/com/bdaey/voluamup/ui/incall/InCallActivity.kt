@@ -14,7 +14,6 @@ import com.bdaey.voluamup.databinding.ActivityInCallBinding
 import com.bdaey.voluamup.service.CallManager
 import com.bdaey.voluamup.service.CustomInCallService
 import com.bdaey.voluamup.ui.main.MainActivity
-import com.google.android.material.slider.Slider
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -23,6 +22,7 @@ class InCallActivity : AppCompatActivity() {
     private lateinit var binding: ActivityInCallBinding
     private lateinit var audioBoosterManager: AudioBoosterManager
     private var wakeLock: PowerManager.WakeLock? = null
+    private var isBoosterActive: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,29 +47,10 @@ class InCallActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        binding.sliderVolumeBoost.valueFrom = 100f
-        binding.sliderVolumeBoost.valueTo = 200f
-        binding.sliderVolumeBoost.value = 200f
+        updateBoosterState(true)
 
-        audioBoosterManager.setBoostPercentage(200)
-
-        binding.switchBoostEnable.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                val boost = binding.sliderVolumeBoost.value.toInt()
-                audioBoosterManager.setBoostPercentage(boost)
-                binding.tvBoostPercentage.text = "$boost%"
-            } else {
-                audioBoosterManager.applyVolumeBoost(100)
-                binding.tvBoostPercentage.text = getString(R.string.boost_disabled)
-            }
-        }
-
-        binding.sliderVolumeBoost.addOnChangeListener { _: Slider, value: Float, _: Boolean ->
-            val boost = value.toInt()
-            binding.tvBoostPercentage.text = "$boost%"
-            if (binding.switchBoostEnable.isChecked) {
-                audioBoosterManager.setBoostPercentage(boost)
-            }
+        binding.btnToggleBooster.setOnClickListener {
+            updateBoosterState(!isBoosterActive)
         }
 
         binding.btnToggleKeypad.setOnClickListener {
@@ -105,6 +86,19 @@ class InCallActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateBoosterState(active: Boolean) {
+        isBoosterActive = active
+        if (active) {
+            audioBoosterManager.applyVolumeBoost(200)
+            binding.btnToggleBooster.text = getString(R.string.earpiece_booster_on)
+            binding.btnToggleBooster.setStrokeColorResource(R.color.boost_gold)
+        } else {
+            audioBoosterManager.applyVolumeBoost(100)
+            binding.btnToggleBooster.text = getString(R.string.earpiece_booster_off)
+            binding.btnToggleBooster.setStrokeColorResource(R.color.surface_dark)
+        }
+    }
+
     private fun setupDtmfKeypad() {
         val dtmfMap = mapOf(
             binding.btnDtmf0 to '0',
@@ -131,11 +125,32 @@ class InCallActivity : AppCompatActivity() {
 
     private fun observeCallState() {
         lifecycleScope.launch {
+            CallManager.currentCall.collectLatest { call ->
+                if (call != null) {
+                    val handle = call.details?.handle
+                    val phoneNumber = handle?.schemeSpecificPart ?: ""
+                    val callerName = call.details?.callerDisplayName
+
+                    if (!callerName.isNullOrEmpty()) {
+                        binding.tvInCallName.text = callerName
+                        binding.tvInCallNumber.text = phoneNumber
+                    } else if (phoneNumber.isNotEmpty()) {
+                        binding.tvInCallName.text = phoneNumber
+                        binding.tvInCallNumber.text = ""
+                    } else {
+                        binding.tvInCallName.text = getString(R.string.unknown_caller)
+                        binding.tvInCallNumber.text = ""
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
             CallManager.callState.collectLatest { state ->
                 when (state) {
                     Call.STATE_ACTIVE -> {
                         binding.tvInCallStatus.text = getString(R.string.in_call_title)
-                        if (binding.switchBoostEnable.isChecked) {
+                        if (isBoosterActive) {
                             audioBoosterManager.enableBooster()
                         }
                         acquireWakeLock()

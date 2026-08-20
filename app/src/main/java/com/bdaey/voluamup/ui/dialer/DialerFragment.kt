@@ -97,7 +97,7 @@ class DialerFragment : Fragment() {
 
     private fun makeCall(phone: String) {
         val context = requireContext()
-        val uri = Uri.fromParts("tel", phone, null)
+        val uri = Uri.parse("tel:${Uri.encode(phone)}")
         val selectedHandle: PhoneAccountHandle? = if (binding.chipSim2.isChecked && phoneAccountHandles.size > 1) {
             phoneAccountHandles[1]
         } else if (phoneAccountHandles.isNotEmpty()) {
@@ -105,32 +105,24 @@ class DialerFragment : Fragment() {
         } else null
 
         if (PermissionHelper.hasPermission(context, Manifest.permission.CALL_PHONE)) {
-            val telecomManager = context.getSystemService(Context.TELECOM_SERVICE) as? TelecomManager
-            if (telecomManager != null) {
-                try {
-                    val extras = Bundle().apply {
-                        if (selectedHandle != null) {
-                            putParcelable(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, selectedHandle)
-                        }
-                    }
-                    telecomManager.placeCall(uri, extras)
-                    return
-                } catch (e: Exception) {
-                    Log.e("DialerFragment", "telecomManager.placeCall failed: ${e.message}")
-                }
-            }
-
             val intent = Intent(Intent.ACTION_CALL, uri).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 if (selectedHandle != null) {
                     putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, selectedHandle)
                 }
             }
-            startActivity(intent)
-        } else {
-            val intent = Intent(Intent.ACTION_DIAL, uri)
-            startActivity(intent)
+            try {
+                startActivity(intent)
+                return
+            } catch (e: Exception) {
+                Log.e("DialerFragment", "ACTION_CALL failed: ${e.message}")
+            }
         }
+
+        val dialIntent = Intent(Intent.ACTION_DIAL, uri).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(dialIntent)
     }
 
     override fun onDestroyView() {

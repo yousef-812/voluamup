@@ -50,18 +50,15 @@
 
     <!-- In-Call Screen -->
     <string name="in_call_title">مكالمة جارية</string>
-    <string name="earpiece_booster_title">مُضخم صوت سماعة الأذن</string>
-    <string name="boost_percentage_format">نسبة التضخيم: %1$d%%</string>
-    <string name="boost_level">مستوى التضخيم: %1$d%%</string>
+    <string name="earpiece_booster_btn">مكبر صوت الأذن (200%)</string>
+    <string name="earpiece_booster_on">مكبر الأذن 200% مفعل</string>
+    <string name="earpiece_booster_off">مكبر الأذن متوقف</string>
     <string name="route_earpiece">سماعة الأذن</string>
     <string name="route_speaker">مكبر الصوت</string>
-    <string name="mute">كتم</string>
+    <string name="mute">كتم الصوت</string>
     <string name="unmute">إلغاء الكتم</string>
     <string name="end_call">إنهاء المكالمة</string>
-    <string name="boost_notice">تضخيم الصوت الرقمي 200% مفعل الآن</string>
     <string name="btn_keypad">لوحة الأرقام</string>
     <string name="btn_add_call">إضافة مكالمة</string>
-    <string name="toggle_boost">تفعيل 200%</string>
-    <string name="boost_enabled">تضخيم 200% مفعّل</string>
-    <string name="boost_disabled">التضخيم متوقف</string>
+    <string name="unknown_caller">رقم غير معروف</string>
 </resources>
