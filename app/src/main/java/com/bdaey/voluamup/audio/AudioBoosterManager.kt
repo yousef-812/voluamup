@@ -17,7 +17,7 @@ class AudioBoosterManager(private val context: Context) {
 
     companion object {
         private const val TAG = "AudioBoosterManager"
-        private const val MAX_GAIN_MB = 1000 // +10dB Gain Boost (200%+ Loudness)
+        private const val MAX_GAIN_MB = 2000 // +20dB Gain Boost
     }
 
     init {
@@ -31,7 +31,7 @@ class AudioBoosterManager(private val context: Context) {
             }
             Log.d(TAG, "LoudnessEnhancer initialized.")
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to initialize LoudnessEnhancer: ${e.message}", e)
+            Log.e(TAG, "Failed to initialize LoudnessEnhancer: ${e.message}")
         }
 
         try {
@@ -53,22 +53,18 @@ class AudioBoosterManager(private val context: Context) {
         }
     }
 
-    fun setBoostPercentage(boostPercentage: Int) {
-        currentBoostPercentage = boostPercentage
-        applyVolumeBoost(boostPercentage)
-    }
-
     fun enableBooster() {
         applyVolumeBoost(currentBoostPercentage)
     }
 
     fun applyVolumeBoost(boostPercentage: Int) {
         val clampedPercent = boostPercentage.coerceIn(100, 200)
+        currentBoostPercentage = clampedPercent
 
         try {
             audioManager.mode = AudioManager.MODE_IN_COMMUNICATION
             val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL)
-            audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, maxVolume, 0)
+            audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, maxVolume, AudioManager.FLAG_SHOW_UI)
         } catch (e: Exception) {
             Log.w(TAG, "Could not set max volume for STREAM_VOICE_CALL: ${e.message}")
         }
@@ -117,3 +113,4 @@ class AudioBoosterManager(private val context: Context) {
         }
     }
 }
+
