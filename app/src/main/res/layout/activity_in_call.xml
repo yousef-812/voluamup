@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Top Contact Info -->
+    <ImageView
+        android:id="@+id/ivInCallAvatar"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="32dp"
+        android:src="@android:drawable/ic_menu_myplaces"
+        app:tint="@color/primary" />
+
+    <TextView
+        android:id="@+id/tvInCallName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/text_primary"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvInCallStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="16sp" />
+
+    <!-- 200% Earpiece Volume Booster Section Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:cardBackgroundColor="@color/surface_dark"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/boost_gold"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvBoosterTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/earpiece_booster_title"
+                    android:textColor="@color/boost_gold"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvBoostPercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="200%"
+                    android:textColor="@color/boost_gold"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <!-- Slider to adjust boost level from 100% to 200% -->
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderVolumeBoost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:stepSize="5"
+                android:value="200"
+                android:valueFrom="100"
+                android:valueTo="200"
+                app:haloColor="@color/boost_gold"
+                app:thumbColor="@color/boost_gold"
+                app:trackColorActive="@color/boost_gold"
+                app:trackColorInactive="@color/card_background" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="@string/boost_notice"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Spacer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Audio Controls (Route & Mute) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!-- Route Earpiece / Speaker -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnToggleSpeaker"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/route_speaker"
+            android:textColor="@color/text_primary"
+            app:icon="@android:drawable/stat_sys_speakerphone"
+            app:iconTint="@color/primary" />
+
+        <!-- Mute / Unmute -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnToggleMute"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mute"
+            android:textColor="@color/text_primary"
+            app:icon="@android:drawable/ic_btn_speak_now"
+            app:iconTint="@color/text_primary" />
+    </LinearLayout>
+
+    <!-- End Call Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnEndCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/end_call"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:tint="@color/text_primary"
+        app:backgroundTint="@color/call_red"
+        app:fabSize="normal" />
+
+</LinearLayout>

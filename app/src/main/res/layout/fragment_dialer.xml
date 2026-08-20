@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Phone Number Display -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom">
+
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/btnBackspace"
+            android:background="@null"
+            android:focusable="false"
+            android:gravity="center"
+            android:hint="@string/enter_phone_number"
+            android:inputType="phone"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnBackspace"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Backspace"
+            android:src="@android:drawable/ic_input_delete"
+            android:tint="@color/text_secondary" />
+    </RelativeLayout>
+
+    <!-- Keypad Grid -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:columnCount="3"
+        android:rowCount="4">
+
+        <!-- Button 1 -->
+        <Button
+            android:id="@+id/btn1"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="1"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button 2 -->
+        <Button
+            android:id="@+id/btn2"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="2"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button 3 -->
+        <Button
+            android:id="@+id/btn3"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="3"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button 4 -->
+        <Button
+            android:id="@+id/btn4"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="4"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button 5 -->
+        <Button
+            android:id="@+id/btn5"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="5"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button 6 -->
+        <Button
+            android:id="@+id/btn6"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="6"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button 7 -->
+        <Button
+            android:id="@+id/btn7"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="7"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button 8 -->
+        <Button
+            android:id="@+id/btn8"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="8"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button 9 -->
+        <Button
+            android:id="@+id/btn9"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="9"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button * -->
+        <Button
+            android:id="@+id/btnStar"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="*"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button 0 -->
+        <Button
+            android:id="@+id/btn0"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="0"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+        <!-- Button # -->
+        <Button
+            android:id="@+id/btnHash"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:text="#"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp" />
+
+    </GridLayout>
+
+    <!-- Call Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/call"
+        android:src="@android:drawable/ic_menu_call"
+        android:tint="@color/text_primary"
+        app:backgroundTint="@color/call_green"
+        app:fabSize="normal" />
+
+</LinearLayout>
