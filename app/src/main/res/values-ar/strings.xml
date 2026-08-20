@@ -1,68 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App & Navigation -->
-    <string name="app_name">صوت 200% - الهاتف</string>
-    <string name="title_dialer">اتصال</string>
+    <string name="app_name">صوت 200% - VoluamUp</string>
+    <string name="title_dialer">لوحة الاتصال</string>
     <string name="title_contacts">جهات الاتصال</string>
-    <string name="title_call_log">السجل</string>
+    <string name="title_call_log">سجل المكالمات</string>
 
-    <!-- Default Dialer Banner -->
-    <string name="set_default_dialer_msg">لتمكين مضخم الصوت 200% أثناء المكالمة، يرجى تعيين التطبيق كـ تطبيق الاتصال الافتراضي.</string>
-    <string name="btn_set_default">تعيين كافتراضي</string>
-
-    <!-- Dialer Screen -->
+    <!-- Dialer -->
     <string name="enter_phone_number">أدخل رقم الهاتف…</string>
     <string name="call">اتصال</string>
+    <string name="set_default_dialer_msg">لتفعيل مضخم الصوت 200% أثناء المكالمة، يرجى تعيين VoluamUp كـ تطبيق الاتصال الافتراضي.</string>
+    <string name="btn_set_default">تعيين كافتراضي</string>
+    <string name="cd_backspace">حذف الرقم</string>
 
-    <!-- Contacts Screen -->
+    <!-- Dialogs & Buttons -->
+    <string name="dialog_default_dialer_title">تعيين كتطبيق اتصال افتراضي</string>
+    <string name="dialog_default_dialer_msg">يحتاج VoluamUp أن يكون تطبيق الاتصال الافتراضي لتضخيم صوت سماعة الأذن حتى 200% أثناء المكالمات.</string>
+    <string name="btn_continue">متابعة</string>
+    <string name="btn_allow">السماح</string>
+    <string name="btn_cancel">إلغاء</string>
+    <string name="btn_open_settings">فتح الإعدادات</string>
+
+    <!-- Permissions -->
+    <string name="permission_contacts_title">إذن الوصول لجهات الاتصال</string>
+    <string name="permission_contacts_rationale">مطلوب إذن جهات الاتصال لعرض الأسماء وأرقام الهواتف من دفتر العناوين.</string>
+    <string name="permission_contacts_permanent_denial">تم رفض إذن جهات الاتصال نهائياً. يرجى تفعيله من إعدادات التطبيق.</string>
+
+    <string name="permission_call_log_title">إذن سجل المكالمات</string>
+    <string name="permission_call_log_rationale">مطلوب إذن سجل المكالمات لعرض المكالمات الصادرة والواردة والمفقودة.</string>
+    <string name="permission_call_log_permanent_denial">تم رفض إذن سجل المكالمات نهائياً. يرجى تفعيله من إعدادات التطبيق.</string>
+
+    <!-- Contacts -->
     <string name="search_contacts">بحث في جهات الاتصال والإيميلات…</string>
-    <string name="no_contacts">لا يوجد جهات اتصال</string>
+    <string name="no_contacts">لا توجد جهات اتصال</string>
     <string name="email_label">البريد:</string>
     <string name="phone_label">الهاتف:</string>
 
-    <!-- Call Log Screen -->
-    <string name="no_call_log">لا يوجد مكالمات سابقة</string>
+    <!-- Call Log -->
+    <string name="no_call_log">لا توجد مكالمات سابقة</string>
     <string name="type_incoming">واردة</string>
     <string name="type_outgoing">صادرة</string>
-    <string name="type_missed">فائتة</string>
-    <string name="call_log_item_format">%1$s • %2$s</string>
+    <string name="type_missed">مفقودة</string>
+    <string name="call_log_item_format">%1$s • %2$s • %3$s</string>
 
     <!-- In-Call Screen -->
     <string name="in_call_title">مكالمة جارية</string>
-    <string name="earpiece_booster_title">مضخم صوت سماعة الأذن (Earpiece Boost)</string>
-    <string name="boost_percentage_format">%1$d%%</string>
+    <string name="earpiece_booster_title">مضخم صوت سماعة الأذن (Boost)</string>
+    <string name="boost_percentage_format">نسبة التكبير: %1$d%%</string>
     <string name="boost_level">مستوى التكبير: %1$d%%</string>
     <string name="route_earpiece">سماعة الأذن</string>
-    <string name="route_speaker">مكبر الصوت (Speaker)</string>
+    <string name="route_speaker">مكبر الصوت</string>
     <string name="mute">كتم الصوت</string>
     <string name="unmute">إلغاء الكتم</string>
     <string name="end_call">إنهاء المكالمة</string>
     <string name="boost_notice">تم تفعيل التكبير الرقمي لصوت المكالمة حتى 200%</string>
-
-    <string name="status_incoming">مكالمة واردة...</string>
-    <string name="status_dialing">جارٍ الاتصال...</string>
-    <string name="status_connecting">جارٍ التوصيل...</string>
-    <string name="status_on_hold">قيد الانتظار</string>
-    <string name="answer_call">رد</string>
-    <string name="decline_call">رفض</string>
-    <string name="hold">تعليق المكالمة</string>
-    <string name="unhold">استئناف المكالمة</string>
-    <string name="keypad">لوحة الأرقام</string>
-
-    <!-- Dialogs & Rationales -->
-    <string name="btn_allow">سماح</string>
-    <string name="btn_cancel">إلغاء</string>
-    <string name="btn_continue">متابعة</string>
-    <string name="btn_open_settings">فتح الإعدادات</string>
-
-    <string name="dialog_default_dialer_title">تعيين التطبيق الافتراضي للمكالمات</string>
-    <string name="dialog_default_dialer_msg">يحتاج التطبيق إلى تعيينه كتطبيق الاتصال الافتراضي للتحكم في واجهة الاتصال وتفعيل ميزة مضخم الصوت 200% أثناء المكالمة.</string>
-
-    <string name="permission_contacts_title">إذن جهات الاتصال</string>
-    <string name="permission_contacts_rationale">يحتاج التطبيق لإذن جهات الاتصال لعرض أسمائهم وإجراء المكالمات مباشرة.</string>
-    <string name="permission_contacts_permanent_denial">تم رفض إذن جهات الاتصال. يرجى منحه من إعدادات التطبيق لعرض سجل الأرقام والأسماء.</string>
-
-    <string name="permission_call_log_title">إذن سجل المكالمات</string>
-    <string name="permission_call_log_rationale">يحتاج التطبيق للوصول إلى سجل المكالمات لعرض المكالمات الصادرة والواردة والمفقودة.</string>
-    <string name="permission_call_log_permanent_denial">تم رفض إذن سجل المكالمات. يرجى تفعيله من إعدادات التطبيق لعرض السجل.</string>
 </resources>

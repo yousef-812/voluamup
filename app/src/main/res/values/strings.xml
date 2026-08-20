@@ -1,45 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">صوت 200% - الهاتف</string>
-    <string name="title_dialer">اتصال</string>
-    <string name="title_contacts">جهات الاتصال</string>
-    <string name="title_call_log">السجل</string>
+    <string name="app_name">VoluamUp</string>
+    <string name="title_dialer">Keypad</string>
+    <string name="title_contacts">Contacts</string>
+    <string name="title_call_log">Recents</string>
 
     <!-- Dialer -->
-    <string name="enter_phone_number">أدخل رقم الهاتف...</string>
-    <string name="call">اتصال</string>
-    <string name="set_default_dialer_msg">لتمكين مضخم الصوت 200% أثناء المكالمة، يرجى تعيين التطبيق كـ تطبيق الاتصال الافتراضي.</string>
-    <string name="btn_set_default">تعيين كافتراضي</string>
+    <string name="enter_phone_number">Enter phone number…</string>
+    <string name="call">Call</string>
+    <string name="set_default_dialer_msg">To enable 200% active call volume amplification, set VoluamUp as your default dialer.</string>
+    <string name="btn_set_default">Set Default</string>
+    <string name="cd_backspace">Delete digit</string>
+
+    <!-- Dialogs & Buttons -->
+    <string name="dialog_default_dialer_title">Set Default Dialer</string>
+    <string name="dialog_default_dialer_msg">VoluamUp needs to be set as default dialer to boost earpiece call volume up to 200%.</string>
+    <string name="btn_continue">Continue</string>
+    <string name="btn_allow">Allow</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_open_settings">Open Settings</string>
+
+    <!-- Permissions -->
+    <string name="permission_contacts_title">Contacts Permission</string>
+    <string name="permission_contacts_rationale">Contacts permission is needed to display address book names and phone numbers.</string>
+    <string name="permission_contacts_permanent_denial">Contacts permission was permanently denied. Please enable it in App Settings.</string>
+
+    <string name="permission_call_log_title">Call Log Permission</string>
+    <string name="permission_call_log_rationale">Call log permission is required to view your recent call history.</string>
+    <string name="permission_call_log_permanent_denial">Call log permission was permanently denied. Please enable it in App Settings.</string>
 
     <!-- Contacts -->
-    <string name="search_contacts">بحث في جهات الاتصال والإيميلات...</string>
-    <string name="no_contacts">لا يوجد جهات اتصال</string>
-    <string name="email_label">البريد:</string>
-    <string name="phone_label">الهاتف:</string>
+    <string name="search_contacts">Search contacts &amp; emails…</string>
+    <string name="no_contacts">No contacts found</string>
+    <string name="email_label">Email:</string>
+    <string name="phone_label">Phone:</string>
 
     <!-- Call Log -->
-    <string name="no_call_log">لا يوجد مكالمات سابقة</string>
-    <string name="type_incoming">واردة</string>
-    <string name="type_outgoing">صادرة</string>
-    <string name="type_missed">مفقودة</string>
+    <string name="no_call_log">No recent calls</string>
+    <string name="type_incoming">Incoming</string>
+    <string name="type_outgoing">Outgoing</string>
+    <string name="type_missed">Missed</string>
+    <string name="call_log_item_format">%1$s • %2$s • %3$s</string>
 
-    <!-- In-Call Screen & Actions -->
-    <string name="in_call_title">مكالمة جارية</string>
-    <string name="earpiece_booster_title">مضخم صوت سماعة الأذن (Earpiece Boost)</string>
-    <string name="boost_level">مستوى التكبير: %1$d%%</string>
-    <string name="route_earpiece">سماعة الأذن</string>
-    <string name="route_speaker">مكبر الصوت (Speaker)</string>
-    <string name="mute">كتم الصوت</string>
-    <string name="unmute">إلغاء الكتم</string>
-    <string name="end_call">إنهاء المكالمة</string>
-    <string name="boost_notice">تم تفعيل التكبير الرقمي لصوت المكالمة حتى 200%</string>
-
-    <string name="status_incoming">مكالمة واردة...</string>
-    <string name="status_dialing">جارٍ الاتصال...</string>
-    <string name="status_connecting">جارٍ التوصيل...</string>
-    <string name="status_on_hold">قيد الانتظار</string>
-    <string name="answer_call">رد</string>
-    <string name="decline_call">رفض</string>
-    <string name="hold">تعليق المكالمة</string>
-    <string name="unhold">استئناف المكالمة</string>
-    <string name="keypad">لوحة الأرقام</string>
+    <!-- In-Call Screen -->
+    <string name="in_call_title">Active Call</string>
+    <string name="earpiece_booster_title">Earpiece Volume Booster</string>
+    <string name="boost_percentage_format">Volume Boost: %1$d%%</string>
+    <string name="boost_level">Boost Level: %1$d%%</string>
+    <string name="route_earpiece">Earpiece</string>
+    <string name="route_speaker">Speaker</string>
+    <string name="mute">Mute</string>
+    <string name="unmute">Unmute</string>
+    <string name="end_call">End Call</string>
+    <string name="boost_notice">Digital gain boost up to 200% active</string>
 </resources>
