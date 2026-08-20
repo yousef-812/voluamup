@@ -2,6 +2,7 @@ package com.bdaey.voluamup.service
 
 import android.content.Intent
 import android.telecom.Call
+import android.telecom.CallAudioState
 import android.telecom.InCallService
 import android.util.Log
 import com.bdaey.voluamup.ui.incall.InCallActivity
@@ -38,6 +39,14 @@ class CustomInCallService : InCallService() {
         CallManager.setCall(null)
         if (instance == this) {
             instance = null
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onCallAudioStateChanged(audioState: CallAudioState?) {
+        super.onCallAudioStateChanged(audioState)
+        audioState?.let {
+            CallManager.updateAudioState(it.isMuted, it.route == CallAudioState.ROUTE_SPEAKER)
         }
     }
 

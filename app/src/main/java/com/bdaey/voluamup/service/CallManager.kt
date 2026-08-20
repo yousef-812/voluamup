@@ -24,15 +24,6 @@ object CallManager {
         override fun onStateChanged(call: Call?, state: Int) {
             _callState.value = state
         }
-
-        @Deprecated("Deprecated in Java")
-        override fun onCallAudioStateChanged(state: CallAudioState?) {
-            super.onCallAudioStateChanged(state)
-            if (state != null) {
-                _isMuted.value = state.isMuted
-                _isSpeakerphoneOn.value = (state.route == CallAudioState.ROUTE_SPEAKER)
-            }
-        }
     }
 
     fun setCall(call: Call?) {
@@ -44,6 +35,11 @@ object CallManager {
         } else {
             _callState.value = Call.STATE_DISCONNECTED
         }
+    }
+
+    fun updateAudioState(isMuted: Boolean, isSpeakerOn: Boolean) {
+        _isMuted.value = isMuted
+        _isSpeakerphoneOn.value = isSpeakerOn
     }
 
     fun answerCall() {
