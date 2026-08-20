@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             roleManager?.isRoleHeld(RoleManager.ROLE_DIALER) == true
         } else {
             val telecomManager = getSystemService(Context.TELECOM_SERVICE) as? TelecomManager
-            telecomManager?.packageName == packageName
+            telecomManager?.defaultDialerPackage == packageName
         }
 
         binding.bannerDefaultDialer.visibility = if (isDefault) View.GONE else View.VISIBLE

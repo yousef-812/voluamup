@@ -10,13 +10,19 @@ class CustomInCallService : InCallService() {
 
     companion object {
         private const val TAG = "CustomInCallService"
+        var instance: CustomInCallService? = null
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
     }
 
     override fun onCallAdded(call: Call) {
         super.onCallAdded(call)
         Log.d(TAG, "Call added: ${call.details?.handle}")
-        CallManager.activeService = this
-        CallManager.onCallAdded(call)
+        instance = this
+        CallManager.setCall(call)
 
         val intent = Intent(this, InCallActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or
@@ -29,9 +35,16 @@ class CustomInCallService : InCallService() {
     override fun onCallRemoved(call: Call) {
         super.onCallRemoved(call)
         Log.d(TAG, "Call removed: ${call.details?.handle}")
-        CallManager.onCallRemoved(call)
-        if (CallManager.currentCallState.value == null) {
-            CallManager.activeService = null
+        CallManager.setCall(null)
+        if (instance == this) {
+            instance = null
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (instance == this) {
+            instance = null
         }
     }
 }
