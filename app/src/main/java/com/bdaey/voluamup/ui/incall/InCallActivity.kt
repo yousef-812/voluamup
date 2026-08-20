@@ -3,9 +3,7 @@ package com.bdaey.voluamup.ui.incall
 import android.content.Context
 import android.os.Bundle
 import android.os.PowerManager
-import android.os.SystemClock
 import android.telecom.Call
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bdaey.voluamup.R
@@ -79,13 +77,12 @@ class InCallActivity : AppCompatActivity() {
             CallManager.callState.collectLatest { state ->
                 when (state) {
                     Call.STATE_ACTIVE -> {
-                        binding.chronometerCallTimer.base = SystemClock.elapsedRealtime()
-                        binding.chronometerCallTimer.start()
+                        binding.tvInCallStatus.text = getString(R.string.in_call_title)
                         audioBoosterManager.enableBooster()
                         acquireWakeLock()
                     }
                     Call.STATE_DISCONNECTED, Call.STATE_DISCONNECTING -> {
-                        binding.chronometerCallTimer.stop()
+                        binding.tvInCallStatus.text = getString(R.string.end_call)
                         audioBoosterManager.release()
                         releaseWakeLock()
                         finish()

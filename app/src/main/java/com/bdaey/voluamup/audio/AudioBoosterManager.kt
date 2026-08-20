@@ -13,6 +13,7 @@ class AudioBoosterManager(private val context: Context) {
 
     private var loudnessEnhancer: LoudnessEnhancer? = null
     private var equalizer: Equalizer? = null
+    private var currentBoostPercentage: Int = 200
 
     companion object {
         private const val TAG = "AudioBoosterManager"
@@ -50,6 +51,15 @@ class AudioBoosterManager(private val context: Context) {
         } catch (e: Exception) {
             Log.w(TAG, "Equalizer initialization skipped: ${e.message}")
         }
+    }
+
+    fun setBoostPercentage(boostPercentage: Int) {
+        currentBoostPercentage = boostPercentage
+        applyVolumeBoost(boostPercentage)
+    }
+
+    fun enableBooster() {
+        applyVolumeBoost(currentBoostPercentage)
     }
 
     fun applyVolumeBoost(boostPercentage: Int) {
