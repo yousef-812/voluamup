@@ -26,7 +26,7 @@
 
             <ImageView
                 android:id="@+id/ivInCallAvatar"
-                android:layout_width=" match_parent"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="20dp"
                 android:src="@android:drawable/ic_menu_myplaces"
@@ -231,111 +231,154 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <!-- Modern Streamlined Control Grid -->
-        <GridLayout
+        <!-- Incoming Call Action Buttons (Answer / Reject) -->
+        <LinearLayout
+            android:id="@+id/layoutIncomingCallActions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:columnCount="2"
-            android:rowCount="3">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="16dp"
+            android:visibility="gone">
 
-            <!-- Earpiece Boost 200% Button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnToggleBooster"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="@string/earpiece_booster_btn"
-                android:textColor="@color/boost_gold"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                app:cornerRadius="24dp"
-                app:icon="@android:drawable/ic_lock_silent_mode_off"
-                app:iconTint="@color/boost_gold"
-                app:strokeColor="@color/boost_gold"
-                app:strokeWidth="1.5dp" />
-
-            <!-- Route Speaker Button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnToggleSpeaker"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="@string/route_speaker"
+            <!-- Reject Call FAB -->
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/btnRejectCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:text="@string/btn_cancel"
                 android:textColor="@color/text_primary"
-                android:textSize="13sp"
-                app:cornerRadius="24dp"
-                app:icon="@android:drawable/stat_sys_speakerphone"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/surface_dark" />
+                app:backgroundTint="@color/call_red"
+                app:icon="@android:drawable/ic_menu_close_clear_cancel"
+                app:iconTint="@color/text_primary" />
 
-            <!-- Mute / Unmute Button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnToggleMute"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="@string/mute"
+            <!-- Answer Call FAB -->
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/btnAnswerCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_allow"
                 android:textColor="@color/text_primary"
-                android:textSize="13sp"
-                app:cornerRadius="24dp"
-                app:icon="@android:drawable/ic_btn_speak_now"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/surface_dark" />
+                app:backgroundTint="@color/call_green"
+                app:icon="@android:drawable/ic_menu_call"
+                app:iconTint="@color/text_primary" />
+        </LinearLayout>
 
-            <!-- Toggle Keypad Button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnToggleKeypad"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:text="@string/btn_keypad"
-                android:textColor="@color/text_primary"
-                android:textSize="13sp"
-                app:cornerRadius="24dp"
-                app:icon="@android:drawable/ic_dialog_dialer"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/surface_dark" />
-
-            <!-- Add Call Button (Centered Full-Width Grid Row) -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAddCall"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_columnSpan="2"
-                android:layout_columnWeight="2"
-                android:layout_margin="6dp"
-                android:text="@string/btn_add_call"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp"
-                app:cornerRadius="24dp"
-                app:icon="@android:drawable/ic_menu_add"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/surface_dark" />
-
-        </GridLayout>
-
-        <!-- End Call Button -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnEndCall"
-            android:layout_width="wrap_content"
+        <!-- Active Call Control Grid -->
+        <LinearLayout
+            android:id="@+id/layoutActiveCallContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/end_call"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
-            android:tint="@color/text_primary"
-            app:backgroundTint="@color/call_red"
-            app:fabSize="normal" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:columnCount="2"
+                android:rowCount="3">
+
+                <!-- Earpiece Boost 200% Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnToggleBooster"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="@string/earpiece_booster_btn"
+                    android:textColor="@color/boost_gold"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="24dp"
+                    app:icon="@android:drawable/ic_lock_silent_mode_off"
+                    app:iconTint="@color/boost_gold"
+                    app:strokeColor="@color/boost_gold"
+                    app:strokeWidth="1.5dp" />
+
+                <!-- Route Speaker Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnToggleSpeaker"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="@string/route_speaker"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    app:cornerRadius="24dp"
+                    app:icon="@android:drawable/stat_sys_speakerphone"
+                    app:iconTint="@color/primary"
+                    app:strokeColor="@color/surface_dark" />
+
+                <!-- Mute / Unmute Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnToggleMute"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="@string/mute"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    app:cornerRadius="24dp"
+                    app:icon="@android:drawable/ic_btn_speak_now"
+                    app:iconTint="@color/primary"
+                    app:strokeColor="@color/surface_dark" />
+
+                <!-- Toggle Keypad Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnToggleKeypad"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:text="@string/btn_keypad"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    app:cornerRadius="24dp"
+                    app:icon="@android:drawable/ic_dialog_dialer"
+                    app:iconTint="@color/primary"
+                    app:strokeColor="@color/surface_dark" />
+
+                <!-- Add Call Button (Centered Full-Width Grid Row) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddCall"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_columnSpan="2"
+                    android:layout_columnWeight="2"
+                    android:layout_margin="6dp"
+                    android:text="@string/btn_add_call"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    app:cornerRadius="24dp"
+                    app:icon="@android:drawable/ic_menu_add"
+                    app:iconTint="@color/primary"
+                    app:strokeColor="@color/surface_dark" />
+
+            </GridLayout>
+
+            <!-- End Call Button -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnEndCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@string/end_call"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:tint="@color/text_primary"
+                app:backgroundTint="@color/call_red"
+                app:fabSize="normal" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

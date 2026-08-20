@@ -17,7 +17,7 @@ class AudioBoosterManager(private val context: Context) {
 
     companion object {
         private const val TAG = "AudioBoosterManager"
-        private const val MAX_GAIN_MB = 600
+        private const val MAX_GAIN_MB = 1000 // +10dB Gain Boost (200%+ Loudness)
     }
 
     init {
@@ -43,7 +43,7 @@ class AudioBoosterManager(private val context: Context) {
                 for (b in 0 until numberOfBands) {
                     val freq = getCenterFreq(b.toShort()) / 1000
                     if (freq in 1000..3500) {
-                        setBandLevel(b.toShort(), (maxLevel * 0.75).toInt().toShort())
+                        setBandLevel(b.toShort(), maxLevel)
                     }
                 }
             }
@@ -66,6 +66,7 @@ class AudioBoosterManager(private val context: Context) {
         val clampedPercent = boostPercentage.coerceIn(100, 200)
 
         try {
+            audioManager.mode = AudioManager.MODE_IN_COMMUNICATION
             val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL)
             audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, maxVolume, 0)
         } catch (e: Exception) {
@@ -80,9 +81,9 @@ class AudioBoosterManager(private val context: Context) {
             }
             loudnessEnhancer?.apply {
                 setTargetGain(gainMilliBel)
-                enabled = true
+                enabled = (clampedPercent > 100)
             }
-            equalizer?.enabled = true
+            equalizer?.enabled = (clampedPercent > 100)
             Log.d(TAG, "Applied gain boost: $clampedPercent% ($gainMilliBel mB).")
         } catch (e: Exception) {
             Log.e(TAG, "Error applying gain: ${e.message}")

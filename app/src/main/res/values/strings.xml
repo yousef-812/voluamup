@@ -22,8 +22,8 @@
     <string name="dialog_default_dialer_title">Set Default Dialer</string>
     <string name="dialog_default_dialer_msg">VoluamUp needs to be set as default dialer to boost earpiece call volume up to 200%.</string>
     <string name="btn_continue">Continue</string>
-    <string name="btn_allow">Allow</string>
-    <string name="btn_cancel">Cancel</string>
+    <string name="btn_allow">Answer</string>
+    <string name="btn_cancel">Decline</string>
     <string name="btn_open_settings">Open Settings</string>
 
     <!-- Permissions -->
@@ -50,6 +50,7 @@
 
     <!-- In-Call Screen -->
     <string name="in_call_title">Active Call</string>
+    <string name="incoming_call_title">Incoming Call…</string>
     <string name="earpiece_booster_btn">Earpiece Boost 200%</string>
     <string name="earpiece_booster_on">Earpiece 200% ON</string>
     <string name="earpiece_booster_off">Earpiece Boost OFF</string>

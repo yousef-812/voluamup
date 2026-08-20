@@ -22,8 +22,8 @@
     <string name="dialog_default_dialer_title">تعيين تطبيق الاتصال الافتراضي</string>
     <string name="dialog_default_dialer_msg">يحتاج VoluamUp إلى تعيينه كتطبيق الاتصال الافتراضي لتضخيم صوت المكالمة حتى 200%.</string>
     <string name="btn_continue">متابعة</string>
-    <string name="btn_allow">سماح</string>
-    <string name="btn_cancel">إلغاء</string>
+    <string name="btn_allow">رد (قبول)</string>
+    <string name="btn_cancel">رفض</string>
     <string name="btn_open_settings">فتح الإعدادات</string>
 
     <!-- Permissions -->
@@ -50,6 +50,7 @@
 
     <!-- In-Call Screen -->
     <string name="in_call_title">مكالمة جارية</string>
+    <string name="incoming_call_title">مكالمة واردة…</string>
     <string name="earpiece_booster_btn">مكبر صوت الأذن (200%)</string>
     <string name="earpiece_booster_on">مكبر الأذن 200% مفعل</string>
     <string name="earpiece_booster_off">مكبر الأذن متوقف</string>

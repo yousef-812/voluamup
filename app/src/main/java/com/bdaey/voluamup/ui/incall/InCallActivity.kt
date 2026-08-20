@@ -2,6 +2,8 @@ package com.bdaey.voluamup.ui.incall
 
 import android.content.Context
 import android.content.Intent
+import android.media.Ringtone
+import android.media.RingtoneManager
 import android.os.Bundle
 import android.os.PowerManager
 import android.telecom.Call
@@ -22,6 +24,7 @@ class InCallActivity : AppCompatActivity() {
     private lateinit var binding: ActivityInCallBinding
     private lateinit var audioBoosterManager: AudioBoosterManager
     private var wakeLock: PowerManager.WakeLock? = null
+    private var ringtone: Ringtone? = null
     private var isBoosterActive: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +85,19 @@ class InCallActivity : AppCompatActivity() {
         }
 
         binding.btnEndCall.setOnClickListener {
+            stopRingtone()
             CallManager.disconnectCall()
+        }
+
+        binding.btnAnswerCall.setOnClickListener {
+            stopRingtone()
+            CallManager.answerCall()
+        }
+
+        binding.btnRejectCall.setOnClickListener {
+            stopRingtone()
+            CallManager.disconnectCall()
+            finish()
         }
     }
 
@@ -123,6 +138,22 @@ class InCallActivity : AppCompatActivity() {
         }
     }
 
+    private fun startRingtone() {
+        if (ringtone == null) {
+            val ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+            ringtone = RingtoneManager.getRingtone(applicationContext, ringtoneUri)
+        }
+        if (ringtone?.isPlaying == false) {
+            ringtone?.play()
+        }
+    }
+
+    private fun stopRingtone() {
+        if (ringtone?.isPlaying == true) {
+            ringtone?.stop()
+        }
+    }
+
     private fun observeCallState() {
         lifecycleScope.launch {
             CallManager.currentCall.collectLatest { call ->
@@ -148,20 +179,33 @@ class InCallActivity : AppCompatActivity() {
         lifecycleScope.launch {
             CallManager.callState.collectLatest { state ->
                 when (state) {
+                    Call.STATE_RINGING -> {
+                        binding.tvInCallStatus.text = getString(R.string.incoming_call_title)
+                        binding.layoutIncomingCallActions.visibility = View.VISIBLE
+                        binding.layoutActiveCallContainer.visibility = View.GONE
+                        startRingtone()
+                    }
                     Call.STATE_ACTIVE -> {
+                        stopRingtone()
                         binding.tvInCallStatus.text = getString(R.string.in_call_title)
+                        binding.layoutIncomingCallActions.visibility = View.GONE
+                        binding.layoutActiveCallContainer.visibility = View.VISIBLE
                         if (isBoosterActive) {
                             audioBoosterManager.enableBooster()
                         }
                         acquireWakeLock()
                     }
                     Call.STATE_DISCONNECTED, Call.STATE_DISCONNECTING -> {
+                        stopRingtone()
                         binding.tvInCallStatus.text = getString(R.string.end_call)
                         audioBoosterManager.release()
                         releaseWakeLock()
                         finish()
                     }
-                    else -> {}
+                    else -> {
+                        binding.layoutIncomingCallActions.visibility = View.GONE
+                        binding.layoutActiveCallContainer.visibility = View.VISIBLE
+                    }
                 }
             }
         }
@@ -193,6 +237,7 @@ class InCallActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        stopRingtone()
         releaseWakeLock()
         audioBoosterManager.release()
     }
