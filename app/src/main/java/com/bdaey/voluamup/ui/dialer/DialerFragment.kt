@@ -1,4 +1,4 @@
-package com.bdaey/voluamup.ui.dialer
+package com.bdaey.voluamup.ui.dialer
 
 import android.Manifest
 import android.content.Context
@@ -12,7 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.bdaey/voluamup.databinding.FragmentDialerBinding
+import com.bdaey.voluamup.databinding.FragmentDialerBinding
 import com.bdaey.voluamup.util.PermissionHelper
 
 class DialerFragment : Fragment() {
