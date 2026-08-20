@@ -26,8 +26,8 @@ object CallManager {
         }
 
         @Deprecated("Deprecated in Java")
-        override fun onCallAudioStateChanged(call: Call?, state: CallAudioState?) {
-            super.onCallAudioStateChanged(call, state)
+        override fun onCallAudioStateChanged(state: CallAudioState?) {
+            super.onCallAudioStateChanged(state)
             if (state != null) {
                 _isMuted.value = state.isMuted
                 _isSpeakerphoneOn.value = (state.route == CallAudioState.ROUTE_SPEAKER)
