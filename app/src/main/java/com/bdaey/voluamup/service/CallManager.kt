@@ -21,15 +21,17 @@ object CallManager {
     val isSpeakerphoneOn: StateFlow<Boolean> = _isSpeakerphoneOn.asStateFlow()
 
     private val callCallback = object : Call.Callback() {
-        override fun onStateChanged(call: Call, state: Int) {
+        override fun onStateChanged(call: Call?, state: Int) {
             _callState.value = state
         }
 
         @Deprecated("Deprecated in Java")
-        override fun onCallAudioStateChanged(call: Call, audioState: CallAudioState) {
-            super.onCallAudioStateChanged(call, audioState)
-            _isMuted.value = audioState.isMuted
-            _isSpeakerphoneOn.value = audioState.route == CallAudioState.ROUTE_SPEAKER
+        override fun onCallAudioStateChanged(call: Call?, state: CallAudioState?) {
+            super.onCallAudioStateChanged(call, state)
+            if (state != null) {
+                _isMuted.value = state.isMuted
+                _isSpeakerphoneOn.value = (state.route == CallAudioState.ROUTE_SPEAKER)
+            }
         }
     }
 
